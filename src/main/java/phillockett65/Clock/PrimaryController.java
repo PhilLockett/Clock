@@ -218,7 +218,7 @@ public class PrimaryController {
 		System.out.println("seconds " + seconds);
 		double fraction = (double)seconds / FULL_DAY;
 		
-		long jDay = 2451545 + days;
+		long jDay = EPOCH + days;
 		double jDate = (double)jDay + fraction;
 		double n = (double)days + fraction + 0.0008;
 		System.out.println("There are " + days + " days from epoch to today. Julian Day: " + jDay + " Julian Date: " + jDate);
@@ -247,7 +247,7 @@ public class PrimaryController {
 		double L = (M + C + 180 + 102.9372) % 360;
 
 		// Solar transit.
-		double Jt = 2451545.0 + J + 0.0053 * Math.sin(Mr) - 0.0069 * Math.sin(2 * Math.toRadians(L));
+		double Jt = EPOCH + J + 0.0053 * Math.sin(Mr) - 0.0069 * Math.sin(2 * Math.toRadians(L));
 	}
 	
 	@FXML    private TextField txtJulian;
