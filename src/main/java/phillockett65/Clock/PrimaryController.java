@@ -197,6 +197,33 @@ public class PrimaryController {
     private String julianString(double date) {
     	return String.format("%f -> %s at %s", date, julianDate(date), julianTime(date));
     }
+	private double solarNoonJulianDate(long jDay) {
+		long days = jDay - EPOCH;
+
+//		System.out.println("Days since epoch " + days);
+
+		double n = (double)days + 0.0008;
+		double longitude = -75.8586;
+		double rotation = longitude / 360;
+
+		// Mean solar time.
+		double J = n - rotation;
+
+		// Solar mean anomaly.
+		double M = (357.5291 + (0.98560028 * J)) % 360;
+		double Mr = Math.toRadians(M);
+
+		// Equation of the center.
+		double C = 1.9148 * Math.sin(Mr) + 0.02 * Math.sin(2 * Mr) + 0.0003 * Math.sin(3 * Mr);
+
+		// Ecliptic longitude.
+		double L = (M + C + 180 + 102.9372) % 360;
+
+		// Solar transit.
+		double Jt = EPOCH + J + 0.0053 * Math.sin(Mr) - 0.0069 * Math.sin(2 * Math.toRadians(L));
+
+		return Jt;
+    }
     @FXML    void testJulianDay(ActionEvent event) {
     	double example = 2456293.520833;
 		System.out.println("example: " + julianString(example));
@@ -231,26 +258,7 @@ public class PrimaryController {
 //			System.out.println("Test Date: " + julianString(td));
 //			td += 0.1;
 //		}
-		double n = (double)days + 0.0008;
-		double longitude = -75.8586;
-		double rotation = longitude / 360;
-
-		// Mean solar time.
-		double J = n - rotation;
-
-		// Solar mean anomaly.
-		double M = (357.5291 + (0.98560028 * J)) % 360;
-		double Mr = Math.toRadians(M);
-
-		// Equation of the center.
-		double C = 1.9148 * Math.sin(Mr) + 0.02 * Math.sin(2 * Mr) + 0.0003 * Math.sin(3 * Mr);
-
-		// Ecliptic longitude.
-		double L = (M + C + 180 + 102.9372) % 360;
-
-		// Solar transit.
-		double Jt = EPOCH + J + 0.0053 * Math.sin(Mr) - 0.0069 * Math.sin(2 * Math.toRadians(L));
-		System.out.println("Solar noon: " + julianString(Jt));
+		System.out.println("Solar noon: " + julianString(solarNoonJulianDate(jDay)));
 
 	}
 	
