@@ -231,7 +231,7 @@ public class PrimaryController {
 //			System.out.println("Test Date: " + julianString(td));
 //			td += 0.1;
 //		}
-		double n = (double)days + fraction + 0.0008;
+		double n = (double)days + 0.0008;
 		double longitude = -75.8586;
 		double rotation = longitude / 360;
 
