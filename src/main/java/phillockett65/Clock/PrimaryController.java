@@ -159,8 +159,10 @@ public class PrimaryController {
     	date += 0.5;
     	int days = (int)(date) - EPOCH;
     	int year = 2000 + (int)((double)days / 365.25);
-    	
+
+//    	System.out.println("Days since epoch " + days);
     	days %= 365.25;
+//    	System.out.println("Days this year " + days);
 
 		LocalDateTime epochDate = LocalDateTime.of(2000, Month.JANUARY, 1, 12, 0);
 		ZoneId epochZone = ZoneId.of("UTC"); 
