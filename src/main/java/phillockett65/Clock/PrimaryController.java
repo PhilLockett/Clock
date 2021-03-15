@@ -206,6 +206,7 @@ public class PrimaryController {
 
 		LocalTime now = LocalTime.now(epochZone);
 		LocalDate today = LocalDate.now(epochZone);
+		System.out.printf("today: %s %d %d at %d:%02d:%02d%n", today.getMonth(), today.getDayOfMonth(), today.getYear(), now.getHour(), now.getMinute(), now.getSecond());
 //		Period p = Period.between(departure.toLocalDate(), today);
 		long days = ChronoUnit.DAYS.between(epoch.toLocalDate(), today);
 		long seconds = now.toSecondOfDay();
@@ -223,7 +224,6 @@ public class PrimaryController {
 		double n = (double)days + fraction + 0.0008;
 		System.out.println("There are " + days + " days from epoch to today. Julian Day: " + jDay + " Julian Date: " + jDate);
 		System.out.println("Julian Date: " + julianString(jDate));
-		System.out.printf("today: %s %d %d at %d:%02d:%02d%n", today.getMonth(), today.getDayOfMonth(), today.getYear(), now.getHour(), now.getMinute(), now.getSecond());
 
 		double td = jDate - 1;
 		for (int i = 0; i < 20; ++i) {
