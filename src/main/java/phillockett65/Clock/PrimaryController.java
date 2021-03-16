@@ -105,7 +105,7 @@ public class PrimaryController {
 	    ZoneOffset offsetLocal = zdt.getOffset();
 	    int seconds = offsetLocal.getTotalSeconds();
 	    
-	    System.out.println("offsetUT " + offsetUT.getTotalSeconds() + "  offsetLocal " + offsetLocal.getTotalSeconds());
+	    System.out.println("offsetUT " + offsetUT.getTotalSeconds() + "  offsetLocal " + seconds);
 
 		Instant timestamp = Instant.now();
 		long secondsFromEpoch = Instant.ofEpochSecond(0L).until(Instant.now(), ChronoUnit.SECONDS);
