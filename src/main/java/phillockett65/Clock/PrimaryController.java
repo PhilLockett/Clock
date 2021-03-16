@@ -119,7 +119,7 @@ public class PrimaryController {
 	    LocalDateTime ldt = LocalDateTime.ofInstant(timestamp, ZoneId.systemDefault());
 		System.out.printf("%s %d %d at %d:%02d%n", ldt.getMonth(), ldt.getDayOfMonth(), ldt.getYear(), ldt.getHour(), ldt.getMinute());
 
-		OffsetTime offsetDate = OffsetTime.of(localDate, offsetLocal);
+//		OffsetTime offsetDate = OffsetTime.of(localDate, offsetLocal);
 //		OffsetTime lastThursday = offsetDate.with(TemporalAdjusters.lastInMonth(DayOfWeek.THURSDAY));
 //		System.out.printf("The last Thursday in March 2021 is the %sth.%n", lastThursday.getDayOfMonth());
 	}
