@@ -259,7 +259,11 @@ public class PrimaryController {
 //			td += 0.1;
 //		}
 		System.out.println("Solar noon: " + julianString(solarNoonJulianDate(jDay)));
-
+		long jd = jDay-10;
+		for (int i = 0; i < 120; ++i) {
+			System.out.println(" Solar noon: " + julianString(solarNoonJulianDate(jd)));
+			jd++;
+		}
 	}
 	
 	@FXML    private TextField txtJulian;
