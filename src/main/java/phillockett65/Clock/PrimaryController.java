@@ -94,16 +94,20 @@ public class PrimaryController {
 		System.out.printf("The last Thursday in March 2021 is the %sth.%n", lastThursday.getDayOfMonth());
 	}
 	
+    private long localUTOffsetSeconds() {
+		LocalDateTime dt = LocalDateTime.now();
+		ZoneId zone = ZoneId.systemDefault();
+	    ZonedDateTime zdt = dt.atZone(zone);
+	    ZoneOffset offsetLocal = zdt.getOffset();
+
+	    return offsetLocal.getTotalSeconds();
+    }
     @FXML    void testOffsetTime(ActionEvent event) {
 		// Find the last Thursday in July 2013.
 		LocalTime localDate = LocalTime.of(19, 30);
 		ZoneOffset offsetUT = ZoneOffset.of("Z");
 
-		LocalDateTime dt = LocalDateTime.now();
-		ZoneId zone = ZoneId.systemDefault();
-	    ZonedDateTime zdt = dt.atZone(zone);
-	    ZoneOffset offsetLocal = zdt.getOffset();
-	    int seconds = offsetLocal.getTotalSeconds();
+	    final long seconds = localUTOffsetSeconds();
 	    
 	    System.out.println("offsetUT " + offsetUT.getTotalSeconds() + "  offsetLocal " + seconds);
 
