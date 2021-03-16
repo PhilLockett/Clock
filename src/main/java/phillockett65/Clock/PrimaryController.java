@@ -258,6 +258,8 @@ public class PrimaryController {
 		System.out.println("There are " + days + " days from epoch to today. Julian Day: " + jDay + " Julian Date: " + jDate);
 		System.out.println("Julian Date: " + julianString(jDate));
 
+	    final long secondsUTOffset = localUTOffsetSeconds();
+		double fractionUTOffset = (double)secondsUTOffset / FULL_DAY;
 //		double td = jDate - 1;
 //		for (int i = 0; i < 20; ++i) {
 //			System.out.println("Test Date: " + julianString(td));
@@ -266,8 +268,11 @@ public class PrimaryController {
 		System.out.println("Solar noon: " + julianString(solarNoonJulianDate(jDay)));
 		long jd = jDay-10;
 		for (int i = 0; i < 120; ++i) {
-			System.out.println(" Solar noon: " + julianString(solarNoonJulianDate(jd)));
-			jd++;
+			double jDate1 = solarNoonJulianDate(jd);
+			System.out.println(" Solar noon: " + julianString(jDate1 + fractionUTOffset));
+			double jDate2 = solarNoonJulianDate(++jd);
+			double diff = jDate2 - jDate1;
+			System.out.println("  Day length: " + fractionTime(diff) + "   (" + (long)(FULL_DAY * diff) + " seconds)");
 		}
 	}
 	
