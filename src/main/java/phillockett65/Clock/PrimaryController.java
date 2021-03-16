@@ -178,9 +178,7 @@ public class PrimaryController {
 
     	return String.format("%s %d %d", month, dayOfMonth, year);
     }
-    private String julianTime(double date) {
-
-    	double fraction = date % 1;
+    private String fractionTime(double fraction) {
 
     	// get hour.
     	fraction *= 24;
@@ -197,6 +195,9 @@ public class PrimaryController {
     	int second = (int)(fraction);
 
     	return String.format("%d:%02d:%02d", hour, minute, second);
+    }
+    private String julianTime(double date) {
+    	return fractionTime(date % 1);
     }
     private String julianString(double date) {
     	return String.format("%f -> %s at %s", date, julianDate(date), julianTime(date));
